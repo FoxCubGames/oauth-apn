@@ -489,9 +489,14 @@ namespace OAuth
 
         public static string ToRequestValue(OAuthSignatureMethod signatureMethod)
         {
-            var value = signatureMethod.ToString().ToUpper();
-            var shaIndex = value.IndexOf("SHA1");
-            return shaIndex > -1 ? value.Insert(shaIndex, "-") : value;
+	        switch (signatureMethod) {
+		        case OAuthSignatureMethod.HmacSha256:
+			        return "HMAC-SHA2-256";
+				case OAuthSignatureMethod.HmacSha1:
+			        return "HMAC-SHA1";
+				default:
+			        return null;
+	        }
         }
 
         private static bool IsNullOrBlank(string value)

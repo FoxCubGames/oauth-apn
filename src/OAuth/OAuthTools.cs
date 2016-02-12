@@ -356,6 +356,15 @@ namespace OAuth
 
                         break;
                     }
+					case OAuthSignatureMethod.HmacSha256: {
+						var crypto = new HMACSHA256();
+						var key = string.Concat(consumerSecret, "&", tokenSecret);
+
+						crypto.Key = _encoding.GetBytes(key);
+						signature = HashWith(signatureBase, crypto);
+
+						break;
+					}
                 default:
                     throw new NotImplementedException("Only HMAC-SHA1 is currently supported.");
             }
