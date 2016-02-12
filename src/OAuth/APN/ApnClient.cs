@@ -20,7 +20,7 @@ namespace AssociatePublishingNetwork {
 				SignatureMethod = OAuthSignatureMethod.HmacSha256,
 				ConsumerKey = ACCESS_ID,
 				ConsumerSecret = ACCESS_SECRET,
-				RequestUrl = string.Format("{0}/{1}", HOSTNAME, endpointUrl),
+				RequestUrl = string.Concat(HOSTNAME, endpointUrl),
 				Version = "1.0",
 			};
 
